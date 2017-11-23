@@ -18,7 +18,9 @@ class App extends Component {
     // Get a reference to the database service
     const database = firebase.database();
 
-    // fetch users from Firebase
+    /****************************
+      fetch users from Firebase
+    *****************************/
     const users = database.ref('users');
 
     // this sets an event on change in Firebase, so 
@@ -43,16 +45,66 @@ class App extends Component {
         users: newState
       });
     });
-  }
+
+    /****************************
+      fetch accounts from Firebase
+    *****************************/
+    const accounts = database.ref('accounts');
+    
+        // this sets an event on change in Firebase, so 
+        // will be updated automagically when there is 
+        // an update in Firebase
+        accounts.on('value', (snapshot) => {
+    
+          // convert Firebase object into an Array and add to state
+          // The format of the data is the following: 
+          /* 
+            Accounts: [   <- Array
+              {
+                account_id: id,
+                apps: [   <- Array (allows for multiple apps per account)
+                  {
+                    app_id,
+                    title
+                  }
+                ]
+              }
+            ]
+          */
+          const allAccounts = snapshot.val();
+          let newState = [];
+    
+          for(let account_id in allAccounts) {
+
+            let newAccount = {};
+            newAccount['account_id'] = account_id;
+            newAccount['apps'] = [];
+
+            for(let app in allAccounts[account_id].apps) {
+
+              newAccount['apps'].push({
+                app_id: app,
+                title: allAccounts[account_id].apps[app].title,
+              });
+              
+              newState.push(newAccount);
+            }            
+          }
+     
+          this.setState({
+            accounts: newState
+          });
+        });
+  }  // end of componentDidMount
   
   render() {
 
-    const message = (!this.state.users) ? "Loading..." : <ListUsers users={this.state.users} />
+    const message = (!this.state.users) ? "Loading..." : <ListUsers users={this.state.users} accounts={this.state.accounts} />
     
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Beezer admin panel</h1>
+          <h1 className="App-title">Beezer admin panel</h1>
         </header>
           
           {message}
