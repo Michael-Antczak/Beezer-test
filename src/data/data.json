@@ -53,6 +53,10 @@
       "apps": {
         "nakedgun": {
           "title": "Naked Gun"
+        },
+
+        "nakedgun2": {
+          "title": "Naked Gun 2"
         }
       }
     },
