@@ -1,8 +1,10 @@
 import React from 'react';
+import User from './User';
 
 const ListUsers = (props) => {
 
     const users = props.users;
+    const accounts = props.accounts;
 
     return (
 
@@ -11,8 +13,9 @@ const ListUsers = (props) => {
             <ul>
                 {
                     users.map((user) => {
+
                         return (
-                            <li key={user.id}>{user.name}</li>
+                            <User key={user.id} user={user} accounts={accounts}/>
                         )
                     })
                 }
@@ -20,5 +23,13 @@ const ListUsers = (props) => {
         </div>
     )
 }
+
+// function findAccount(accounts, account_id) {
+//     var account = accounts.find((acc, index, obj) => {
+//         // console.log(`Number ${index} - ${acc}`);
+//         return acc.account_id === user.account;
+//     })
+//     return account;
+// }
 
 export default ListUsers;
