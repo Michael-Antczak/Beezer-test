@@ -24,12 +24,4 @@ const ListUsers = (props) => {
     )
 }
 
-// function findAccount(accounts, account_id) {
-//     var account = accounts.find((acc, index, obj) => {
-//         // console.log(`Number ${index} - ${acc}`);
-//         return acc.account_id === user.account;
-//     })
-//     return account;
-// }
-
 export default ListUsers;
