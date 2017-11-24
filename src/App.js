@@ -98,8 +98,6 @@ class App extends Component {
   }  // end of componentDidMount
   
   render() {
-
-    const message = (!this.state.users) ? "Loading..." : <ListUsers users={this.state.users} accounts={this.state.accounts} />
     
     return (
       <div className="App">
@@ -107,7 +105,7 @@ class App extends Component {
           <h1 className="App-title">Beezer admin panel</h1>
         </header>
           
-          {message}
+        <ListUsers users={this.state.users} accounts={this.state.accounts} />
 
       </div>
     );
