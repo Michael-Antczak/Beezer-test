@@ -1,4 +1,17 @@
 .user-data {
     border: 1px solid red; 
-    width: 30%;
+    width: 100%;
+}
+
+
+@media screen and (min-width: 600px) {
+    .user-data {
+        width: calc(50% - 2px);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .user-data {
+        width: calc(33% - 2px);
+    }
 }
