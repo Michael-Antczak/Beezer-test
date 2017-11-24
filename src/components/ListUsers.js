@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import './ListUsers.css';
 
 const ListUsers = (props) => {
 
@@ -10,7 +11,7 @@ const ListUsers = (props) => {
 
         <div id="list-users">
             <h1>List of Users</h1> 
-            <ul>
+            <ul id="user-list">
                 {
                     users.map((user) => {
 
